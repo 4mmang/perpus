@@ -1,0 +1,67 @@
+<?php
+
+namespace App\Http\Controllers\RestFullApi;
+
+use App\Http\Controllers\Controller;
+use App\Models\BookLending;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class PeminjamanController extends Controller
+{
+
+    public function index()
+    {
+        try {
+            $lendings = BookLending::where('user_id', Auth::id())->get();
+            return response()->json([
+                'status' => 'success',
+                'lendings' => $lendings,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan saat mengambil data peminjaman.'
+            ], 500);
+        }
+    }
+
+    public function ajukanPinjaman($id)
+    {
+        try {
+            BookLending::create([
+                'user_id' => Auth::id(),
+                'book_id' => $id, 
+            ]); 
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Pengajuan pinjaman buku berhasil.',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Gagal mengajukan pinjaman buku.'
+            ], 500);
+        }
+    }
+
+    public function batalkanPinjaman($id)
+    {
+        try {
+            $lending = BookLending::where('id', $id)
+                                  ->where('user_id', Auth::id())
+                                  ->firstOrFail();
+            $lending->delete();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Peminjaman buku berhasil dibatalkan.',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Gagal membatalkan peminjaman buku.'
+            ], 500);
+        }
+    }
+}
