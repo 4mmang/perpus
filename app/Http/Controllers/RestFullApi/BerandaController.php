@@ -10,10 +10,17 @@ class BerandaController extends Controller
 {
     public function index()
     {
-        $books = Book::take(5)->latest()->get();
-        return response()->json([
-            'status' => 'success', 
-            'books' => $books
-        ], 200);
+        try {
+            $books = Book::take(5)->latest()->get();
+            return response()->json([
+                'status' => 'success', 
+                'books' => $books
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 'error', 
+                'message' => 'Terjadi kesalahan pada server'
+            ], 500);
+        }
     }
 }
