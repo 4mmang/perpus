@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 Route::post('/login', [App\Http\Controllers\RestFullApi\LoginController::class, 'login']);
-// Route::get('/beranda', [App\Http\Controllers\RestFullApi\BerandaController::class, 'index'])->middleware('auth:sanctum');
-Route::post('/beranda', [App\Http\Controllers\RestFullApi\BerandaController::class, 'index']);
+Route::get('/beranda', [App\Http\Controllers\RestFullApi\BerandaController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/logout', [App\Http\Controllers\RestFullApi\LoginController::class, 'logout'])->middleware('auth:sanctum');
 
 Route::post('/register', [App\Http\Controllers\RestFullApi\RegisterController::class, 'register']);
