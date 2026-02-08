@@ -4,6 +4,7 @@ namespace App\Http\Controllers\RestFullApi;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class KatalogController extends Controller
@@ -11,7 +12,7 @@ class KatalogController extends Controller
     public function index(Request $request)
     {
         try {
-
+            $categories = Category::all();
             $books = Book::all();
             if ($request->kategori) {
                 $books = Book::where('category_id', $request->kategori)->get();
@@ -19,6 +20,7 @@ class KatalogController extends Controller
             return response()->json([
                 'status' => 'success',
                 'books' => $books, 
+                'categories' => $categories,
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
