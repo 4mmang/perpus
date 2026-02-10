@@ -36,7 +36,13 @@ class KatalogController extends Controller
             $book = Book::findOrFail($id);
             return response()->json([
                 'status' => 'success',
-                'book' => $book,
+                'book' => [
+                    "title" => $book->title,
+                    "category" => $book->category->name,
+                    "author" => $book->author,
+                    "publication_year" => $book->publication_year,
+                    "stock" => $book->stock
+                ],
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
