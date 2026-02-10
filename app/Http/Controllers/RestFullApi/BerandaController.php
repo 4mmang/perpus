@@ -10,9 +10,7 @@ class BerandaController extends Controller
 {
     public function index()
     {
-        try {
-            // return request()->header('Authorization');
-            // dd(request()->header('Authorization'));
+        try { 
             $books = Book::take(5)->latest()->get();
             return response()->json([
                 'status' => 'success', 
