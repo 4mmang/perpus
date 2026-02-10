@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\RestFullApi;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book;
 use App\Models\BookLending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,11 @@ class PeminjamanController extends Controller
                 'user_id' => Auth::id(),
                 'book_id' => $id,
             ]);
+
+            $book = Book::findOrFail($id);
+            $book->stok = $book->stok - 1;
+            $book->save();
+            
             return response()->json([
                 'status' => 'success',
                 'message' => 'Pengajuan pinjaman buku berhasil.',
