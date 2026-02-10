@@ -29,10 +29,19 @@ class PeminjamanController extends Controller
     public function ajukanPinjaman($id)
     {
         try {
+            $cekStatus = BookLending::where('user_id', Auth::id())
+                ->where('book_id', $id)
+                ->firstOrFail();
+            if ($cekStatus) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Anda sudah mengajukan pinjaman untuk buku ini.',
+                ], 400);
+            }
             BookLending::create([
                 'user_id' => Auth::id(),
-                'book_id' => $id, 
-            ]); 
+                'book_id' => $id,
+            ]);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Pengajuan pinjaman buku berhasil.',
@@ -49,8 +58,8 @@ class PeminjamanController extends Controller
     {
         try {
             $lending = BookLending::where('id', $id)
-                                  ->where('user_id', Auth::id())
-                                  ->firstOrFail();
+                ->where('user_id', Auth::id())
+                ->firstOrFail();
             $lending->delete();
 
             return response()->json([
