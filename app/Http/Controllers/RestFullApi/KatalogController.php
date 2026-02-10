@@ -55,14 +55,14 @@ class KatalogController extends Controller
     public function search(Request $request)
     {
         try {
-            // $query = $request->input('q');
-            // $books = Book::where('title', 'LIKE', "%{$query}%")
-            //              ->orWhere('author', 'LIKE', "%{$query}%")
-            //              ->get();
+            $query = $request->input('q');
+            $books = Book::where('title', 'LIKE', "%{$query}%")
+                         ->orWhere('author', 'LIKE', "%{$query}%")
+                         ->get();
 
             return response()->json([
                 'status' => 'success',
-                // 'books' => $books,
+                'books' => $books,
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
