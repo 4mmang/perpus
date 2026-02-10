@@ -38,7 +38,7 @@ class KatalogController extends Controller
                 'status' => 'success',
                 'book' => [
                     "title" => $book->title,
-                    "category" => $book->category->name,
+                    "category_name" => $book->category->name,
                     "author" => $book->author,
                     "publication_year" => $book->publication_year,
                     "stock" => $book->stock
