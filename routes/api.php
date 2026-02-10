@@ -15,5 +15,5 @@ Route::post('/logout', [App\Http\Controllers\RestFullApi\LoginController::class,
 Route::post('/register', [App\Http\Controllers\RestFullApi\RegisterController::class, 'register']);
 
 Route::get('/books', [KatalogController::class, 'index'])->middleware('auth:sanctum');
-Route::get('/books/{id}', [KatalogController::class, 'show'])->middleware('auth:sanctum');
 Route::get('/books/search', [KatalogController::class, 'search'])->middleware('auth:sanctum');
+Route::get('/books/{id}', [KatalogController::class, 'show'])->middleware('auth:sanctum');
