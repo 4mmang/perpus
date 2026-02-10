@@ -45,7 +45,7 @@ class PeminjamanController extends Controller
             ]);
 
             $book = Book::findOrFail($id);
-            $book->stok = $book->stok - 1;
+            $book->stock = $book->stock - 1;
             $book->save();
 
             return response()->json([
