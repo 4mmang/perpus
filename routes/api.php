@@ -19,3 +19,4 @@ Route::get('/books/search', [KatalogController::class, 'search'])->middleware('a
 Route::get('/books/{id}', [KatalogController::class, 'show'])->middleware('auth:sanctum');
 
 Route::get('/lendings', [App\Http\Controllers\RestFullApi\PeminjamanController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/lendings/{id}/request', [App\Http\Controllers\RestFullApi\PeminjamanController::class, 'ajukanPinjaman'])->middleware('auth:sanctum');
