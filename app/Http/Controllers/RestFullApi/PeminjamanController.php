@@ -47,7 +47,7 @@ class PeminjamanController extends Controller
             $book = Book::findOrFail($id);
             $book->stok = $book->stok - 1;
             $book->save();
-            
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Pengajuan pinjaman buku berhasil.',
@@ -55,7 +55,8 @@ class PeminjamanController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Gagal mengajukan pinjaman buku.'
+                // 'message' => 'Gagal mengajukan pinjaman buku.'
+                'message' => $e->getMessage()
             ], 500);
         }
     }
