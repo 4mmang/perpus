@@ -32,7 +32,7 @@ class PeminjamanController extends Controller
         try {
             $cekStatus = BookLending::where('user_id', Auth::id())
                 ->where('book_id', $id)
-                ->firstOrFail();
+                ->first();
             if ($cekStatus) {
                 return response()->json([
                     'status' => 'error',
