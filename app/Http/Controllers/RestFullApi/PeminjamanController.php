@@ -143,7 +143,7 @@ class PeminjamanController extends Controller
         }
 
         return response()->json([
-            'status' => 'success',
+            'status' => 'successssss',
             'lendings' => $data,
         ], 200);
     }
