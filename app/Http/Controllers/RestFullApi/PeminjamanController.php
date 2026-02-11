@@ -88,16 +88,25 @@ class PeminjamanController extends Controller
     public function batalkanPinjaman($id)
     {
         try {
+            DB::beginTransaction();
             $lending = BookLending::where('id', $id)
                 ->where('user_id', Auth::id())
                 ->firstOrFail();
+
+            $book = Book::findOrFail($lending->book_id);
+            $book->stock = $book->stock + 1;
+            
+            $book->save();
             $lending->delete();
+
+            DB::commit();
 
             return response()->json([
                 'status' => 'success',
                 'message' => 'Peminjaman buku berhasil dibatalkan.',
             ], 200);
         } catch (\Exception $e) {
+            DB::rollback();
             return response()->json([
                 'status' => 'error',
                 'message' => 'Gagal membatalkan peminjaman buku.'

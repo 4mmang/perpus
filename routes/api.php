@@ -20,3 +20,4 @@ Route::get('/books/{id}', [KatalogController::class, 'show'])->middleware('auth:
 
 Route::get('/lendings', [App\Http\Controllers\RestFullApi\PeminjamanController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/lendings/{id}/request', [App\Http\Controllers\RestFullApi\PeminjamanController::class, 'ajukanPinjaman'])->middleware('auth:sanctum');
+Route::delete('/lendings/{id}/cancel', [App\Http\Controllers\RestFullApi\PeminjamanController::class, 'batalkanPinjaman'])->middleware('auth:sanctum');
