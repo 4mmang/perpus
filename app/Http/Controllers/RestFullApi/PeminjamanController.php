@@ -7,6 +7,7 @@ use App\Models\Book;
 use App\Models\BookLending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
 {
@@ -14,10 +15,28 @@ class PeminjamanController extends Controller
     public function index()
     {
         try {
-            $lendings = BookLending::where('user_id', Auth::id())->get();
+            $lendings = BookLending::with('book')
+                ->where('user_id', Auth::id())
+                ->get();
+
+            $data = [];
+
+            foreach ($lendings as $lending) {
+                $data[] = [
+                    'id' => $lending->id,
+                    'book_id' => $lending->book_id,
+                    'user_id' => $lending->user_id,
+                    'status' => $lending->status,
+                    'created_at' => $lending->created_at,
+                    'lend_date' => $lending->lend_date,
+                    'return_date' => $lending->return_date,
+                    'title' => optional($lending->book)->title,
+                ];
+            }
+
             return response()->json([
                 'status' => 'success',
-                'lendings' => $lendings,
+                'lendings' => $data,
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
@@ -30,6 +49,8 @@ class PeminjamanController extends Controller
     public function ajukanPinjaman($id)
     {
         try {
+            DB::beginTransaction();
+
             $cekStatus = BookLending::where('user_id', Auth::id())
                 ->where('book_id', $id)
                 ->first();
@@ -48,11 +69,14 @@ class PeminjamanController extends Controller
             $book->stock = $book->stock - 1;
             $book->save();
 
+            DB::commit();
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Pengajuan pinjaman buku berhasil.',
             ], 200);
         } catch (\Exception $e) {
+            DB::rollback();
             return response()->json([
                 'status' => 'error',
                 // 'message' => 'Gagal mengajukan pinjaman buku.'
