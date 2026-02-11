@@ -119,6 +119,11 @@ class PeminjamanController extends Controller
         $query = BookLending::with('book')
             ->where('user_id', Auth::id());
 
+        return response()->json([
+            'status' => 'success',
+            'message' => $query->toSql(),
+        ], 200);
+
         if ($request->has('title')) {
             $query->whereHas('book', function ($q) use ($request) {
                 $q->where('title', $request->input('title'));
