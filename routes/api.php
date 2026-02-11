@@ -19,5 +19,6 @@ Route::get('/books/search', [KatalogController::class, 'search'])->middleware('a
 Route::get('/books/{id}', [KatalogController::class, 'show'])->middleware('auth:sanctum');
 
 Route::get('/lendings', [App\Http\Controllers\RestFullApi\PeminjamanController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/lendings/search', [App\Http\Controllers\RestFullApi\PeminjamanController::class, 'cariPinjaman'])->middleware('auth:sanctum');
 Route::post('/lendings/{id}/request', [App\Http\Controllers\RestFullApi\PeminjamanController::class, 'ajukanPinjaman'])->middleware('auth:sanctum');
 Route::delete('/lendings/{id}/cancel', [App\Http\Controllers\RestFullApi\PeminjamanController::class, 'batalkanPinjaman'])->middleware('auth:sanctum');

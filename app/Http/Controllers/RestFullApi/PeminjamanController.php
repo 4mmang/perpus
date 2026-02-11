@@ -95,7 +95,7 @@ class PeminjamanController extends Controller
 
             $book = Book::findOrFail($lending->book_id);
             $book->stock = $book->stock + 1;
-            
+
             $book->save();
             $lending->delete();
 
@@ -112,5 +112,39 @@ class PeminjamanController extends Controller
                 'message' => 'Gagal membatalkan peminjaman buku.'
             ], 500);
         }
+    }
+
+    public function cariPinjaman(Request $request)
+    {
+        $query = BookLending::with('book')
+            ->where('user_id', Auth::id());
+
+        if ($request->has('title')) {
+            $query->whereHas('book', function ($q) use ($request) {
+                $q->where('title', $request->input('title'));
+            });
+        }
+
+        $lendings = $query->get();
+
+        $data = [];
+
+        foreach ($lendings as $lending) {
+            $data[] = [
+                'id' => $lending->id,
+                'book_id' => $lending->book_id,
+                'user_id' => $lending->user_id,
+                'status' => $lending->status,
+                'created_at' => $lending->created_at,
+                'lend_date' => $lending->lend_date,
+                'return_date' => $lending->return_date,
+                'title' => optional($lending->book)->title,
+            ];
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'lendings' => $data,
+        ], 200);
     }
 }
