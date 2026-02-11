@@ -121,7 +121,7 @@ class PeminjamanController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => $query->toSql(),
+            'message' => $query->get(),
         ], 200);
 
         if ($request->has('title')) {
