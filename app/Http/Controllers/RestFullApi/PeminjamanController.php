@@ -129,12 +129,7 @@ class PeminjamanController extends Controller
             });
         }
 
-        $lendings = $query->get();
-
-        return response()->json([
-            'status' => 'success',
-            'message' => $lendings,
-        ], 200);
+        $lendings = $query->get(); 
 
         $data = [];
 
