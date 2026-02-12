@@ -14,7 +14,7 @@ class BerandaController extends Controller
     {
         try {
             $favoriteBooks = BookLending::select('book_id', DB::raw('count(*) as total_lendings'))
-                ->where('status', 'returned') // hanya yang sudah dikembalikan
+                ->where('status', 'returned')
                 ->groupBy('book_id')
                 ->orderByDesc('total_lendings')
                 ->with('book')
