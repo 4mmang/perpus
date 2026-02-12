@@ -116,18 +116,25 @@ class PeminjamanController extends Controller
 
     public function cariPinjaman(Request $request)
     {
+        // $book = Book::where('title', 'like', '%' . $request->input('title') . '%')->get();
+        
         $query = BookLending::with('book')
             ->where('user_id', Auth::id());
 
-        return response()->json([
-            'status' => 'success',
-            'message' => $query->get(),
-        ], 200);
+        // return response()->json([
+        //     'status' => 'success',
+        //     'message' => $query->get(),
+        // ], 200);
 
         if ($request->has('title')) {
             $query->whereHas('book', function ($q) use ($request) {
                 $q->where('title', $request->input('title'));
             });
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'masuk',
+            ], 200);
         }
 
         $lendings = $query->get();
