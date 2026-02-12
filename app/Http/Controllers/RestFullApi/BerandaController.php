@@ -4,17 +4,27 @@ namespace App\Http\Controllers\RestFullApi;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\BookLending;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BerandaController extends Controller
 {
     public function index()
     {
         try { 
-            $books = Book::take(5)->latest()->get();
+            $favoriteBooks = BookLending::select('book_id', DB::raw('count(*) as total_lendings'))
+                ->groupBy('book_id')
+                ->orderByDesc('total_lendings')
+                ->with('book')
+                ->take(5)
+                ->get();
+
+            // $books = Book::take(5)->latest()->get();
+
             return response()->json([
                 'status' => 'success', 
-                'books' => $books
+                'favorite_books' => $favoriteBooks, 
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([

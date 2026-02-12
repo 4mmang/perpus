@@ -115,8 +115,7 @@ class PeminjamanController extends Controller
     }
 
     public function cariPinjaman(Request $request)
-    {
-        // $book = Book::where('title', 'like', '%' . $request->input('title') . '%')->get();
+    { 
 
         $query = BookLending::with('book')
             ->where('user_id', Auth::id());
