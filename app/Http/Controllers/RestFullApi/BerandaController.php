@@ -21,11 +21,12 @@ class BerandaController extends Controller
                 ->take(5)
                 ->get();
 
-            // $books = Book::take(5)->latest()->get();
+            $books = Book::take(5)->latest()->get();
 
             return response()->json([
                 'status' => 'success',
                 'favorite_books' => $favoriteBooks,
+                'books' => $books,
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
