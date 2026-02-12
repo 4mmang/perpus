@@ -25,7 +25,7 @@ class BerandaController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'favorite_books' => $favoriteBooks,
+                'favorite_books' => $favoriteBooks->total_lendings,
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
