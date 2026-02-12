@@ -12,8 +12,9 @@ class BerandaController extends Controller
 {
     public function index()
     {
-        try { 
+        try {
             $favoriteBooks = BookLending::select('book_id', DB::raw('count(*) as total_lendings'))
+                ->where('status', 'returned') // hanya yang sudah dikembalikan
                 ->groupBy('book_id')
                 ->orderByDesc('total_lendings')
                 ->with('book')
@@ -23,12 +24,12 @@ class BerandaController extends Controller
             // $books = Book::take(5)->latest()->get();
 
             return response()->json([
-                'status' => 'success', 
-                'favorite_books' => $favoriteBooks, 
+                'status' => 'success',
+                'favorite_books' => $favoriteBooks,
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
-                'status' => 'error', 
+                'status' => 'error',
                 'message' => 'Terjadi kesalahan pada server'
             ], 500);
         }
