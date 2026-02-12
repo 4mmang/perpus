@@ -136,9 +136,9 @@ class PeminjamanController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'masuk',
+            'message' => $lendings,
         ], 200);
-        
+
         $data = [];
 
         foreach ($lendings as $lending) {
