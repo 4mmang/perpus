@@ -18,9 +18,9 @@ class ProfilController extends Controller
                 'id' => $profil->id,
                 'username' => $profil->username,
                 'email' => $profil->email,
-                'address' => optional($profil->profile->address),
-                'phone' => optional($profil->profile->phone),
-                'gender' => optional($profil->profile->gender),
+                'address' => optional($profil->profile)->address,
+                'phone' => optional($profil->profile)->phone,
+                'gender' => optional($profil->profile)->gender,
             ],
         ]);
     }
