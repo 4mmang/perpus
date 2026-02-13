@@ -61,7 +61,7 @@
                                                         </button>
                                                         <form action="{{ route('peminjaman.update', $borrowing->id) }}"
                                                             method="POST"
-                                                            onsubmit="return confirm('Yakin mau membatalkan peminjaman ini?')">
+                                                            onsubmit="return confirm('Yakin mau menandai peminjaman ini sebagai dipinjamkan?')">
                                                             @csrf
                                                             @method('PUT')
                                                             <input type="hidden" name="status" value="borrowed">
