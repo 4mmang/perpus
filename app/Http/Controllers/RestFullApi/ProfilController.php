@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\RestFullApi;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +50,7 @@ class ProfilController extends Controller
             $user->email = $request->email;
             $user->save();
 
-            $profile = $user->profile;
+            $profile = Profile::where('user_id', Auth::id())->first();
             $profile->name = $request->name;
             $profile->address = $request->address;
             $profile->phone = $request->phone;
