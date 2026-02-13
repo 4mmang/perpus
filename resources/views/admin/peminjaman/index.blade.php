@@ -38,15 +38,27 @@
                                             <td>{{ $borrowing->created_at }}</td>
                                             <td>{{ $borrowing->status }}</td>
                                             <td>
-                                                <form action="{{ route('peminjaman.update', $borrowing->id) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('Yakin mau menyetujui peminjaman ini?')">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <button type="submit" class="btn btn-primary btn-sm">
-                                                        Setujui
-                                                    </button>
-                                                </form>
+                                                @if ($borrowing->status == 'pending')
+                                                    <form action="{{ route('peminjaman.update', $borrowing->id) }}"
+                                                        method="POST"
+                                                        onsubmit="return confirm('Yakin mau menyetujui peminjaman ini?')">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                            Setujui
+                                                        </button>
+                                                    </form>
+                                                @elseif($borrowing->status == 'approved')
+                                                    <form action="{{ route('peminjaman.update', $borrowing->id) }}"
+                                                        method="POST"
+                                                        onsubmit="return confirm('Yakin mau membatalkan peminjaman ini?')">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button type="submit" class="btn btn-warning btn-sm">
+                                                            Batalkan
+                                                        </button>
+                                                    </form>
+                                                @endif
                                                 {{-- <button type="button" class="btn btn-danger btn-sm"
                                                     onclick="return confirm('Are you sure you want to delete this category?')">
                                                     Tolak
