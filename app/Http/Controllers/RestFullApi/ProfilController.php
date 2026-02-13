@@ -35,7 +35,7 @@ class ProfilController extends Controller
 
             $validatedData = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email',
+                'email' => 'required|email|unique:users,email,' . Auth::id(),
             ]);
 
             if ($validatedData->fails()) {
