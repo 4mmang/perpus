@@ -11,10 +11,17 @@ class ProfilController extends Controller
 {
     public function index()
     {
-        $profil = Auth::user();
+        $profil = User::with('profile')->find(Auth::id());
         return response()->json([
             'status' => 'success',
-            'profil' => $profil,
+            'profil' => [
+                'id' => $profil->id,
+                'username' => $profil->username,
+                'email' => $profil->email,
+                'address' => $profil->profile->address,
+                'phone' => $profil->profile->phone,
+                'gender' => $profil->profile->gender,
+            ],
         ]);   
     }
 }
