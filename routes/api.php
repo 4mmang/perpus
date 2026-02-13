@@ -24,3 +24,4 @@ Route::post('/lendings/{id}/request', [App\Http\Controllers\RestFullApi\Peminjam
 Route::delete('/lendings/{id}/cancel', [App\Http\Controllers\RestFullApi\PeminjamanController::class, 'batalkanPinjaman'])->middleware('auth:sanctum');
 
 Route::get('/profil', [App\Http\Controllers\RestFullApi\ProfilController::class, 'index'])->middleware('auth:sanctum');
+Route::put('/profil', [App\Http\Controllers\RestFullApi\ProfilController::class, 'update'])->middleware('auth:sanctum');
