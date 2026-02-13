@@ -20,6 +20,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>NISN</th>
                                         <th>Nama</th>
                                         <th>Alamat</th>
                                         <th>Jenis Kelamin</th>
@@ -31,10 +32,11 @@
                                     @foreach ($students as $student)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $student->name }}</td>
-                                            <td>{{ $student->address }}</td>
-                                            <td>{{ $student->gender }}</td>
-                                            <td>{{ $student->phone }}</td>
+                                            <td>{{ $student->username }}</td>
+                                            <td>{{ $student->profile->name }}</td>
+                                            <td>{{ $student->profile->address }}</td>
+                                            <td>{{ $student->profile->gender }}</td>
+                                            <td>{{ $student->profile->phone }}</td>
                                             <td>
                                                 {{-- <a href="#" class="btn btn-warning btn-sm">Edit</a> --}}
                                                 <form action="{{ route('students.destroy', $student->id) }}" method="POST" class="d-inline">
