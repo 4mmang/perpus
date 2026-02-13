@@ -16,6 +16,7 @@ class ProfilController extends Controller
             'status' => 'success',
             'profil' => [
                 'id' => $profil->id,
+                'name' => optional($profil->profile)->name,
                 'username' => $profil->username,
                 'email' => $profil->email,
                 'address' => optional($profil->profile)->address,
