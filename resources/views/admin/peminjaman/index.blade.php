@@ -70,25 +70,14 @@
                                                             Dipinjamkan
                                                         </button>
                                                     </form>
-                                                @elseif($borrowing->status == '')
-                                                    <form action="{{ route('peminjaman.update', $borrowing->id) }}"
-                                                        method="POST"
-                                                        onsubmit="return confirm('Yakin mau membatalkan peminjaman ini?')">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <input type="hidden" name="status" value="rejected">
-                                                        <button type="submit" class="btn btn-warning btn-sm">
-                                                            Batalkan
-                                                        </button>
-                                                    </form>
-                                                @else
+                                                @elseif($borrowing->status == 'boorrowed')
                                                     <form action="{{ route('peminjaman.update', $borrowing->id) }}"
                                                         method="POST"
                                                         onsubmit="return confirm('Yakin menandai ini sebagai dikembalikan?')">
                                                         @csrf
                                                         @method('PUT')
                                                         <input type="hidden" name="status" value="returned">
-                                                        <button type="submit" class="btn btn-warning btn-sm">
+                                                        <button type="submit" class="btn btn-warning btn-sm mb-1">
                                                             Dikembalikan
                                                         </button>
                                                     </form>
@@ -98,10 +87,10 @@
                                                         @csrf
                                                         @method('PUT')
                                                         <input type="hidden" name="status" value="overdue">
-                                                        <button type="submit" class="btn btn-warning btn-sm">
+                                                        <button type="submit" class="btn btn-warning btn-sm mb-1">
                                                             Terlambat
                                                         </button>
-                                                    </form>
+                                                    </form> 
                                                 @endif
                                                 {{-- <button type="button" class="btn btn-danger btn-sm"
                                                     onclick="return confirm('Are you sure you want to delete this category?')">
