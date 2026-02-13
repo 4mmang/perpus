@@ -70,7 +70,7 @@
                                                             Dipinjamkan
                                                         </button>
                                                     </form>
-                                                @elseif($borrowing->status == 'boorrowed')
+                                                @elseif($borrowing->status == 'borrowed')
                                                     <form action="{{ route('peminjaman.update', $borrowing->id) }}"
                                                         method="POST"
                                                         onsubmit="return confirm('Yakin menandai ini sebagai dikembalikan?')">
