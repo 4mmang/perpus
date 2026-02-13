@@ -32,7 +32,7 @@ class ProfilController extends Controller
     {
         try {
             $validatedData = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
+                // 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
             ]);
 
