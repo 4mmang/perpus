@@ -16,7 +16,7 @@ class PeminjamanController extends Controller
     public function update(Request $request, $id)
     {
         $borrowing = \App\Models\BookLending::findOrFail($id);
-        $borrowing->status = 'approved';
+        $borrowing->status = $request->input('status');
         $borrowing->save();
 
         return redirect()->route('peminjaman.index')->with('success', 'Status peminjaman berhasil diperbarui.');
