@@ -16,7 +16,7 @@
                             <div class="col mr-2 ms-3">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Total Kategori Buku</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalCategory }}</div>
                             </div>
                             <div class="col-auto mr-3">
                                 <i class="fas fa-blog fa-2x text-gray-300"></i>
@@ -32,7 +32,7 @@
                             <div class="col mr-2 ms-3">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Total Buku</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalBook }}</div>
                             </div>
                             <div class="col-auto mr-3">
                                 <i class="fas fa-bullhorn fa-2x text-gray-300"></i>
@@ -48,7 +48,7 @@
                             <div class="col mr-2 ms-3">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Total Status Pending</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalStatusPending }}</div>
                             </div>
                             <div class="col-auto mr-3">
                                 <i class="fas fa-question-circle fa-2x text-gray-300"></i>
@@ -64,7 +64,7 @@
                             <div class="col mr-2 ms-3">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Total Status Dipinjam</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalStatusBorrowed }}</div>
                             </div>
                             <div class="col-auto mr-3">
                                 <i class="fas fa-question-circle fa-2x text-gray-300"></i>
@@ -80,7 +80,7 @@
                             <div class="col mr-2 ms-3">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Total Status Dikembalikan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalStatusReturned }}</div>
                             </div>
                             <div class="col-auto mr-3">
                                 <i class="fas fa-question-circle fa-2x text-gray-300"></i>
@@ -96,7 +96,7 @@
                             <div class="col mr-2 ms-3">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Total Status Terlambat</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalStatusOverdue }}</div>
                             </div>
                             <div class="col-auto mr-3">
                                 <i class="fas fa-question-circle fa-2x text-gray-300"></i>

@@ -22,6 +22,7 @@
                                         <th>No</th>
                                         <th>NISN</th>
                                         <th>Nama</th>
+                                        <th>Email</th>
                                         <th>Alamat</th>
                                         <th>Jenis Kelamin</th>
                                         <th>No Hp</th>
@@ -34,6 +35,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $student->username }}</td>
                                             <td>{{ $student->profile->name }}</td>
+                                            <td>{{ $student->email }}</td>
                                             <td>{{ $student->profile->address }}</td>
                                             <td>{{ $student->profile->gender }}</td>
                                             <td>{{ $student->profile->phone }}</td>
