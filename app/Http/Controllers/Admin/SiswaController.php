@@ -13,4 +13,11 @@ class SiswaController extends Controller
         $students = User::where('role', 'user')->get();
         return view('admin.students.index', compact('students'));
     }
+
+    public function destroy($id)
+    {
+        $student = User::findOrFail($id);
+        $student->delete();
+        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+    }
 }
