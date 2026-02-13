@@ -44,6 +44,7 @@
                                                         onsubmit="return confirm('Yakin mau menyetujui peminjaman ini?')">
                                                         @csrf
                                                         @method('PUT')
+                                                        <input type="hidden" name="status" value="approved">
                                                         <button type="submit" class="btn btn-primary btn-sm">
                                                             Setujui
                                                         </button>
@@ -54,6 +55,27 @@
                                                         onsubmit="return confirm('Yakin mau membatalkan peminjaman ini?')">
                                                         @csrf
                                                         @method('PUT')
+                                                        <input type="hidden" name="status" value="rejected">
+                                                        <button type="submit" class="btn btn-warning btn-sm">
+                                                            Batalkan
+                                                        </button>
+                                                    <form action="{{ route('peminjaman.update', $borrowing->id) }}"
+                                                        method="POST"
+                                                        onsubmit="return confirm('Yakin mau membatalkan peminjaman ini?')">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="status" value="borrowed">
+                                                        <button type="submit" class="btn btn-warning btn-sm">
+                                                            Dipinjamkan
+                                                        </button>
+                                                    </form>
+                                                @elseif($borrowing->status == '')
+                                                    <form action="{{ route('peminjaman.update', $borrowing->id) }}"
+                                                        method="POST"
+                                                        onsubmit="return confirm('Yakin mau membatalkan peminjaman ini?')">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="status" value="rejected">
                                                         <button type="submit" class="btn btn-warning btn-sm">
                                                             Batalkan
                                                         </button>
