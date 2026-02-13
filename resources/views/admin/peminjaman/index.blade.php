@@ -38,7 +38,14 @@
                                             <td>{{ $borrowing->created_at }}</td>
                                             <td>{{ $borrowing->status }}</td>
                                             <td>
-                                                <a href="{{ route('peminjaman.update', $borrowing->id) }}" class="btn btn-primary btn-sm">Setujui</a>
+                                                <form action="{{ route('peminjaman.update', $borrowing->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" class="btn btn-primary btn-sm">
+                                                        Setujui
+                                                    </button>
+                                                </form>
                                                 {{-- <button type="button" class="btn btn-danger btn-sm"
                                                     onclick="return confirm('Are you sure you want to delete this category?')">
                                                     Tolak
