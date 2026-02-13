@@ -65,7 +65,7 @@
                                                         @csrf
                                                         @method('PUT')
                                                         <input type="hidden" name="status" value="borrowed">
-                                                        <button type="submit" class="btn btn-warning btn-sm">
+                                                        <button type="submit" class="btn btn-success btn-sm">
                                                             Dipinjamkan
                                                         </button>
                                                     </form>
