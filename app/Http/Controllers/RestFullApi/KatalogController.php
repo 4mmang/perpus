@@ -19,7 +19,7 @@ class KatalogController extends Controller
             }
             return response()->json([
                 'status' => 'success',
-                'books' => $books, 
+                'books' => $books,
                 'categories' => $categories,
             ], 200);
         } catch (\Exception $e) {
@@ -55,20 +55,48 @@ class KatalogController extends Controller
     public function search(Request $request)
     {
         try {
-            $query = $request->input('q');
-            $books = Book::where('title', 'LIKE', "%{$query}%")
-                         ->orWhere('author', 'LIKE', "%{$query}%")
-                         ->get();
+            $query = strtolower(trim($request->input('q')));
+            $queryTokens = explode(' ', $query);
+
+            $books = Book::all();
+            $result = [];
+
+            foreach ($books as $book) {
+
+                $text = strtolower($book->title . ' ' . $book->author);
+                $bookTokens = explode(' ', $text);
+
+                $totalDistance = 0;
+
+                foreach ($queryTokens as $qToken) {
+
+                    $minDistance = PHP_INT_MAX;
+
+                    foreach ($bookTokens as $bToken) {
+                        $distance = levenshtein($qToken, $bToken);
+                        $minDistance = min($minDistance, $distance);
+                    }
+
+                    $totalDistance += $minDistance;
+                }
+
+                if ($totalDistance <= 5) {
+                    $book->distance = $totalDistance;
+                    $result[] = $book;
+                }
+            }
+
+            usort($result, fn($a, $b) => $a->distance <=> $b->distance);
 
             return response()->json([
                 'status' => 'success',
-                'books' => $books,
-            ], 200);
+                'books' => $result
+            ]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Terjadi kesalahan saat mencari buku.'
             ], 500);
         }
-    } 
+    }
 }

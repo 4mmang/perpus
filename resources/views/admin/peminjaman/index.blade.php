@@ -77,7 +77,7 @@
                                                         @csrf
                                                         @method('PUT')
                                                         <input type="hidden" name="status" value="returned">
-                                                        <button type="submit" class="btn btn-warning btn-sm mb-1">
+                                                        <button type="submit" class="btn btn-success btn-sm mb-1">
                                                             Dikembalikan
                                                         </button>
                                                     </form>
@@ -87,7 +87,7 @@
                                                         @csrf
                                                         @method('PUT')
                                                         <input type="hidden" name="status" value="overdue">
-                                                        <button type="submit" class="btn btn-warning btn-sm mb-1">
+                                                        <button type="submit" class="btn btn-danger btn-sm mb-1">
                                                             Terlambat
                                                         </button>
                                                     </form> 
