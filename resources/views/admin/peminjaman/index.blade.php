@@ -59,48 +59,49 @@
                                                         <button type="submit" class="btn btn-warning btn-sm">
                                                             Batalkan
                                                         </button>
-                                                        <form action="{{ route('peminjaman.update', $borrowing->id) }}"
-                                                            method="POST"
-                                                            onsubmit="return confirm('Yakin mau menandai peminjaman ini sebagai dipinjamkan?')">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="borrowed">
-                                                            <button type="submit" class="btn btn-success btn-sm">
-                                                                Dipinjamkan
-                                                            </button>
-                                                        </form>
-                                                    @elseif($borrowing->status == '')
-                                                        <form action="{{ route('peminjaman.update', $borrowing->id) }}"
-                                                            method="POST"
-                                                            onsubmit="return confirm('Yakin mau membatalkan peminjaman ini?')">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="rejected">
-                                                            <button type="submit" class="btn btn-warning btn-sm">
-                                                                Batalkan
-                                                            </button>
-                                                        </form>
-                                                    @else
-                                                        <form action="{{ route('peminjaman.update', $borrowing->id) }}"
-                                                            method="POST"
-                                                            onsubmit="return confirm('Yakin menandai ini sebagai dikembalikan?')">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="returned">
-                                                            <button type="submit" class="btn btn-warning btn-sm">
-                                                                Dikembalikan
-                                                            </button>
-                                                        </form>
-                                                        <form action="{{ route('peminjaman.update', $borrowing->id) }}"
-                                                            method="POST"
-                                                            onsubmit="return confirm('Yakin mau menandai peminjaman ini sebagai terlambat?')">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="status" value="overdue">
-                                                            <button type="submit" class="btn btn-warning btn-sm">
-                                                                Terlambat
-                                                            </button>
-                                                        </form>
+                                                    </form>
+                                                    <form action="{{ route('peminjaman.update', $borrowing->id) }}"
+                                                        method="POST"
+                                                        onsubmit="return confirm('Yakin mau menandai peminjaman ini sebagai dipinjamkan?')">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="status" value="borrowed">
+                                                        <button type="submit" class="btn btn-success btn-sm">
+                                                            Dipinjamkan
+                                                        </button>
+                                                    </form>
+                                                @elseif($borrowing->status == '')
+                                                    <form action="{{ route('peminjaman.update', $borrowing->id) }}"
+                                                        method="POST"
+                                                        onsubmit="return confirm('Yakin mau membatalkan peminjaman ini?')">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="status" value="rejected">
+                                                        <button type="submit" class="btn btn-warning btn-sm">
+                                                            Batalkan
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <form action="{{ route('peminjaman.update', $borrowing->id) }}"
+                                                        method="POST"
+                                                        onsubmit="return confirm('Yakin menandai ini sebagai dikembalikan?')">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="status" value="returned">
+                                                        <button type="submit" class="btn btn-warning btn-sm">
+                                                            Dikembalikan
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('peminjaman.update', $borrowing->id) }}"
+                                                        method="POST"
+                                                        onsubmit="return confirm('Yakin mau menandai peminjaman ini sebagai terlambat?')">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="status" value="overdue">
+                                                        <button type="submit" class="btn btn-warning btn-sm">
+                                                            Terlambat
+                                                        </button>
+                                                    </form>
                                                 @endif
                                                 {{-- <button type="button" class="btn btn-danger btn-sm"
                                                     onclick="return confirm('Are you sure you want to delete this category?')">
