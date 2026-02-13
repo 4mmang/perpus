@@ -49,7 +49,7 @@ class RegisterController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => 'error',
-                'message' => $th->getMessage()
+                'message' => "Terjadi kesalahan saat registrasi"
             ], 500);
         }
     }

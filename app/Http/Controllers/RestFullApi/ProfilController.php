@@ -51,10 +51,10 @@ class ProfilController extends Controller
             $user->save();
 
             $profile = Profile::where('user_id', Auth::id())->first();
-            // $profile->name = $request->name;
-            // $profile->address = $request->address;
-            // $profile->phone = $request->phone;
-            // $profile->gender = $request->gender;
+            $profile->name = $request->name;
+            $profile->address = $request->address;
+            $profile->phone = $request->phone;
+            $profile->gender = $request->gender;
             $profile->save();
 
             DB::commit();
