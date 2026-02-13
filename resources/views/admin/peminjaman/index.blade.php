@@ -39,10 +39,10 @@
                                             <td>{{ $borrowing->status }}</td>
                                             <td>
                                                 <a href="#" class="btn btn-warning btn-sm">Setujui</a>
-                                                <button type="button" class="btn btn-danger btn-sm"
+                                                {{-- <button type="button" class="btn btn-danger btn-sm"
                                                     onclick="return confirm('Are you sure you want to delete this category?')">
                                                     Tolak
-                                                </button>
+                                                </button> --}}
                                             </td>
                                         </tr>
                                     @endforeach
