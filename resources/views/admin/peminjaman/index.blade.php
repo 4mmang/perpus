@@ -20,6 +20,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>NISN</th>
                                         <th>Nama</th>
                                         <th>Judul Buku</th>
                                         <th>Tanggal Pengajuan</th>
@@ -31,6 +32,7 @@
                                     @foreach ($borrowings as $borrowing)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $borrowing->user->username }}</td>
                                             <td>{{ $borrowing->user->profile->name }}</td>
                                             <td>{{ $borrowing->book->title }}</td>
                                             <td>{{ $borrowing->created_at }}</td>
