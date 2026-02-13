@@ -31,7 +31,7 @@
                                     @foreach ($borrowings as $borrowing)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $borrowing->user->name }}</td>
+                                            <td>{{ $borrowing->user->profile->name }}</td>
                                             <td>{{ $borrowing->book->title }}</td>
                                             <td>{{ $borrowing->created_at }}</td>
                                             <td>{{ $borrowing->status }}</td>
