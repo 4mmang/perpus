@@ -31,6 +31,11 @@ class ProfilController extends Controller
     public function update(Request $request)
     {
         try {
+            return response()->json([
+                'status' => 'error',
+                'message' => $request->all()
+            ], 200);
+            
             $validatedData = Validator::make($request->all(), [
                 // 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
