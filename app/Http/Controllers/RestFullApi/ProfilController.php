@@ -65,7 +65,7 @@ class ProfilController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Terjadi kesalahan pada server'
+                'message' => $th->getMessage()
             ], 500);
         }
     }
