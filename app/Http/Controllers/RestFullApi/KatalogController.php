@@ -56,6 +56,25 @@ class KatalogController extends Controller
     {
         try {
             $query = strtolower(trim($request->input('q')));
+
+            // ==========================
+            // 1. PENCARIAN NORMAL DULU
+            // ==========================
+            $normalSearch = Book::where('title', 'LIKE', "%{$query}%")
+                ->orWhere('author', 'LIKE', "%{$query}%")
+                ->get();
+
+            if ($normalSearch->isNotEmpty()) {
+
+                return response()->json([
+                    'status' => 'success', 
+                    'books'  => $normalSearch
+                ]);
+            }
+
+            // ==========================
+            // 2. FUZZY SEARCH (LEVENSHTEIN)
+            // ==========================
             $queryTokens = explode(' ', $query);
 
             $books = Book::all();
@@ -89,8 +108,8 @@ class KatalogController extends Controller
             usort($result, fn($a, $b) => $a->distance <=> $b->distance);
 
             return response()->json([
-                'status' => 'success',
-                'books' => $result
+                'status' => 'success', 
+                'books'  => $result
             ]);
         } catch (\Exception $e) {
             return response()->json([
