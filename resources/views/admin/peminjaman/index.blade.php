@@ -39,7 +39,8 @@
                                             <td>{{ $borrowing->status }}</td>
                                             <td>
                                                 <form action="{{ route('peminjaman.update', $borrowing->id) }}"
-                                                    method="POST">
+                                                    method="POST"
+                                                    onsubmit="return confirm('Yakin mau menyetujui peminjaman ini?')">
                                                     @csrf
                                                     @method('PUT')
                                                     <button type="submit" class="btn btn-primary btn-sm">
