@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->date('lend_date')->nullable();
             $table->date('return_date')->nullable();
-            $table->enum('status', ['pending', 'borrowed', 'returned', 'overdue'])->default('pending');
+            $table->enum('status', ['pending', 'approved', 'borrowed', 'returned', 'overdue'])->default('pending');
             $table->timestamps();
         });
     }
