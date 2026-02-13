@@ -80,7 +80,7 @@ class KatalogController extends Controller
                     $totalDistance += $minDistance;
                 }
 
-                if ($totalDistance <= 5) {
+                if ($totalDistance <= 2) {
                     $book->distance = $totalDistance;
                     $result[] = $book;
                 }
