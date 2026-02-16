@@ -16,7 +16,7 @@
                 <div class="card p-3 shadow-lg">
                     <div class="card-body">
                         <a href="" class="text-decoration-none text-default">
-                            <p class="fs-4 fw-bold mb-4">Perpus Digital SMP Negeri 3 Tapango</p>
+                            <p class="fs-4 fw-bold mb-4">Perpus SMP Negeri 3 Tapango</p>
                         </a>
                         @if (session('message'))
                             <div class="alert alert-danger">
