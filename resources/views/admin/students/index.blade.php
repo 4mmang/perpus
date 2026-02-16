@@ -36,9 +36,9 @@
                                             <td>{{ $student->username }}</td>
                                             <td>{{ $student->profile->name }}</td>
                                             <td>{{ $student->email }}</td>
-                                            <td>{{ $student->profile->address }}</td>
-                                            <td>{{ $student->profile->gender }}</td>
-                                            <td>{{ $student->profile->phone }}</td>
+                                            <td>{{ $student->profile->address ?? '-' }}</td>
+                                            <td>{{ $student->profile->gender ?? '-' }}</td>
+                                            <td>{{ $student->profile->phone ?? '-' }}</td>
                                             <td>
                                                 {{-- <a href="#" class="btn btn-warning btn-sm">Edit</a> --}}
                                                 <form action="{{ route('students.destroy', $student->id) }}" method="POST" class="d-inline">
