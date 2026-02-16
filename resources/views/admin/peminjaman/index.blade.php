@@ -37,9 +37,9 @@
                                             <td>{{ $borrowing->user->username }}</td>
                                             <td>{{ $borrowing->user->profile->name }}</td>
                                             <td>{{ $borrowing->book->title }}</td>
-                                            <td>{{ $borrowing->lend_date }}</td>
-                                            <td>{{ $borrowing->return_date }}</td>
                                             <td>{{ $borrowing->created_at }}</td>
+                                            <td>{{ $borrowing->lend_date ?? '-' }}</td>
+                                            <td>{{ $borrowing->return_date ?? '-' }}</td>
                                             <td>
                                                 @if ($borrowing->status == 'pending')
                                                     <span class="badge badge-warning">Pending</span>
