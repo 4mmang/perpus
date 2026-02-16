@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Perpus Digital SMP Negeri 3 Tapango @yield('title')</title>
+    <title>Perpus SMP Negeri 3 Tapango @yield('title')</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('/') }}vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
