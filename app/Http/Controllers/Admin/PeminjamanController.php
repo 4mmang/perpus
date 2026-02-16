@@ -17,6 +17,11 @@ class PeminjamanController extends Controller
     {
         $borrowing = \App\Models\BookLending::findOrFail($id);
         $borrowing->status = $request->input('status');
+        if ($request->input('status') == 'borrowed') {
+            $borrowing->lend_date = now();
+        } elseif ($request->input('status') == 'returned') {
+            $borrowing->return_date = now();
+        }
         $borrowing->save();
 
         return redirect()->route('peminjaman.index')->with('success', 'Status peminjaman berhasil diperbarui.');
