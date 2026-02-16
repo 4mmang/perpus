@@ -24,6 +24,8 @@
                                         <th>Nama</th>
                                         <th>Judul Buku</th>
                                         <th>Tanggal Pengajuan</th>
+                                        <th>Tanggal Dipinjam</th>
+                                        <th>Tanggal Dikembalikan</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -35,6 +37,8 @@
                                             <td>{{ $borrowing->user->username }}</td>
                                             <td>{{ $borrowing->user->profile->name }}</td>
                                             <td>{{ $borrowing->book->title }}</td>
+                                            <td>{{ $borrowing->lend_date }}</td>
+                                            <td>{{ $borrowing->return_date }}</td>
                                             <td>{{ $borrowing->created_at }}</td>
                                             <td>
                                                 @if ($borrowing->status == 'pending')
