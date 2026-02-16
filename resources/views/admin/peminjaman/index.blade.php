@@ -36,7 +36,21 @@
                                             <td>{{ $borrowing->user->profile->name }}</td>
                                             <td>{{ $borrowing->book->title }}</td>
                                             <td>{{ $borrowing->created_at }}</td>
-                                            <td>{{ $borrowing->status }}</td>
+                                            <td>
+                                                @if ($borrowing->status == 'pending')
+                                                    <span class="badge badge-warning">Pending</span>
+                                                @elseif($borrowing->status == 'approved')
+                                                    <span class="badge badge-primary">Disetujui</span>
+                                                @elseif($borrowing->status == 'borrowed')
+                                                    <span class="badge badge-success">Dipinjamkan</span>
+                                                @elseif($borrowing->status == 'returned')
+                                                    <span class="badge badge-info">Dikembalikan</span>
+                                                @elseif($borrowing->status == 'overdue')
+                                                    <span class="badge badge-danger">Terlambat</span>
+                                                @elseif($borrowing->status == 'rejected')
+                                                    <span class="badge badge-secondary">Ditolak</span>
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if ($borrowing->status == 'pending')
                                                     <form action="{{ route('peminjaman.update', $borrowing->id) }}"
